@@ -3,6 +3,10 @@ source 'https://rubygems.org'
 # Web
 gem 'unicorn'
 gem 'rails', '4.1.1'
+
+gem "haml-rails"
+gem 'simple_form'
+gem 'bootstrap-sass', '~> 3.1.1'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
@@ -32,5 +36,4 @@ group :test do
   gem 'database_cleaner'
   gem 'capybara'
   gem 'poltergeist'
-  gem 'capybara'
 end
