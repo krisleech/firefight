@@ -8,6 +8,15 @@ class PeopleRepo
   def commit(person)
     raise 'person not valid' unless person.valid?
     data.push(person)
+    self
+  end
+
+  def delete_all
+    data.clear
+  end
+
+  def count
+    data.size
   end
 
   def self.all
@@ -16,6 +25,14 @@ class PeopleRepo
 
   def self.commit(person)
     instance.commit(person)
+  end
+
+  def self.delete_all
+    instance.delete_all
+  end
+
+  def self.count
+    instance.count
   end
 
   private

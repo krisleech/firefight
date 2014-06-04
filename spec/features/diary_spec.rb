@@ -1,18 +1,5 @@
 require 'rails_helper'
 
-def build_person(attrs = {})
-  Person.new(attrs.merge(default_person_attrs)).tap do |person|
-    PeopleRepo.commit(person)
-  end
-end
-
-def default_person_attrs
-  {
-    first_name: 'Kris',
-    last_name: 'Leech'
-  }
-end
-
 feature 'diary' do
   background { person }
   given(:person) { build_person }

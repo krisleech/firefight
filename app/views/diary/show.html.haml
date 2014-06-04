@@ -1,7 +1,38 @@
-%div hello
+%h1 Fightfighters Diary
 
-= simple_form_for([:diary, @assignment], html: {class: 'form-horizontal' }) do |form|
-  = form.input :person_id, collection: @people, label_method: :full_name
-  = form.input :date
-  = form.input :days
-  = form.submit 'Assign'
+%h2 Assign Person
+
+%section#assign_person
+
+  = simple_form_for([:diary, @assignment], html: {class: 'form-horizontal' }) do |form|
+    = form.input :person_id, collection: @people, label_method: :full_name
+    = form.input :date
+    = form.input :days
+    = form.submit 'Assign'
+
+%h2 People
+
+%section#people
+
+%h2 Add Person
+
+%section#add_person
+
+  = simple_form_for(@new_person) do |form|
+    = form.input :first_name
+    = form.input :last_name
+    = form.submit 'Save'
+
+%h2 Diary
+
+%section#diary
+
+:javascript
+  $(function(){
+    peopleView = new PeopleView();
+    peopleView.render();
+
+    addPersonView = new AddPersonView();
+    addPersonView.render();
+  });
+
