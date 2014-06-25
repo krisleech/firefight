@@ -18,33 +18,42 @@ describe PeopleController do
     context 'valid person' do
       let(:valid_json) do
         {
-          first_name: 'Kris',
-          last_name: 'Leech'
+          person: {
+            first_name: 'Kris',
+            last_name: 'Leech'
+          }
         }
       end
 
+      it 'is successful' do
+        post :create, valid_json
+        expect(response).to be_successful
+      end
+
       it 'saves the person' do
-        post :create, :json => valid_json
+        post :create, valid_json
         expect(PeopleRepo.count).to eq(1)
       end
     end
 
     context 'invalid person' do
-      let(:valid_json) do
+      let(:invalid_json) do
         {
-          first_name: '',
-          last_name: ''
+          person: {
+            first_name: '',
+            last_name: ''
+          }
         }
       end
 
       it 'does not save the person' do
-        post :create, :json => valid_json
+        post :create, invalid_json
         expect(PeopleRepo.count).to eq(0)
       end
 
       it 'is unsuccessful' do
-        post :create, :json => valid_json
-        expect(response.code).to eq(500)
+        post :create, invalid_json
+        expect(response).to be_forbidden
       end
     end
   end
