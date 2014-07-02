@@ -21,6 +21,10 @@ gem 'jbuilder', '~> 2.0'
 # Data
 gem 'sqlite3'
 
+group :production do
+  gem 'rails_12factor'
+end
+
 group :development do
   gem 'spring'
 end
