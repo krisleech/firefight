@@ -1,5 +1,7 @@
 # FireFighing App
 
+http://agile-forest-8186.herokuapp.com/
+
 ## Features
 
 - [ ] Assign people to diary
@@ -9,7 +11,6 @@
 ## Getting started
 
 ```
-rake db:migrate
 unicorn
 ```
 
