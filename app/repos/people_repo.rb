@@ -1,12 +1,14 @@
 class PeopleRepo
   include Singleton
 
+  class PersonNotValid < StandardError; end
+
   def all
     data
   end
 
   def commit(person)
-    raise 'person not valid' unless person.valid?
+    raise PersonNotValid unless person_valid?(person)
     data.push(person)
     self
   end
@@ -39,5 +41,9 @@ class PeopleRepo
 
   def data
     @data ||= []
+  end
+
+  def person_valid?(person)
+    person.valid? && !data.map(&:id).include?(person.id)
   end
 end

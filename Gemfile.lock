@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/HouseTrip/spec_requirer.git
+  revision: 0364229c4cce2a5faa183d80ede7c95cde2265af
+  specs:
+    spec_requirer (0.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -249,6 +255,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 4.0.3)
   simple_form
+  spec_requirer!
   spring
   timecop
   turbolinks

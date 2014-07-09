@@ -1,3 +1,5 @@
+APP_ROOT = Pathname(File.dirname(__FILE__)).join('..')
+
 RSpec.configure do |config|
   config.filter_run :focus
   config.run_all_when_everything_filtered = true
@@ -21,3 +23,8 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 end
+
+require 'spec_requirer'
+
+SpecRequirer.setup(app_root:   APP_ROOT.join('app'),
+                   components: ['models'])

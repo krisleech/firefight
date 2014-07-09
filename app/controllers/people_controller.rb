@@ -33,9 +33,10 @@ class PeopleSerializer
   def self.to_json(people)
     Jbuilder.encode do |json|
       json.array! people do |person|
+        json.id         person.id
         json.first_name person.first_name
-        json.last_name person.last_name
-        json.full_name person.full_name
+        json.last_name  person.last_name
+        json.full_name  person.full_name
       end
     end
   end
@@ -44,9 +45,10 @@ end
 class PersonSerializer
   def self.to_json(person)
     Jbuilder.encode do |json|
+      json.id         person.id
       json.first_name person.first_name
-      json.last_name person.last_name
-      json.full_name person.full_name
+      json.last_name  person.last_name
+      json.full_name  person.full_name
     end
   end
 end

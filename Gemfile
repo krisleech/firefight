@@ -44,4 +44,5 @@ group :test do
   gem 'database_cleaner'
   gem 'capybara'
   gem 'poltergeist'
+  gem 'spec_requirer', github: 'HouseTrip/spec_requirer'
 end

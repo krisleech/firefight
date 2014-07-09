@@ -10,7 +10,13 @@ describe PeopleController do
     it 'responds with all people' do
       2.times { create_person }
       get :index
-      expect(JSON.parse(response.body).size).to eq(2)
+      expect(parse(response).size).to eq(2)
+    end
+
+    it 'person contain all expected keys' do
+      create_person
+      get :index
+      expect(parse(response)[0].keys).to eq %w(id first_name last_name full_name)
     end
   end
 
@@ -56,5 +62,9 @@ describe PeopleController do
         expect(response).to be_forbidden
       end
     end
+  end
+
+  def parse(response)
+    JSON.parse(response.body)
   end
 end
