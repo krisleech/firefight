@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'adding person' do
 
-  scenario 'adding multiple people' do
+  pending 'adding multiple people' do
     visit diary_path
 
     within('#add_person') do
