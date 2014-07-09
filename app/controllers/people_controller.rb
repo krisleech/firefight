@@ -3,14 +3,13 @@ class PeopleController < ApplicationController
   wrap_parameters format: :json
 
   def index
-    logger.debug("PEOPLE: #{PeopleRepo.all}")
     render :json => PeopleSerializer.to_json(PeopleRepo.all)
   end
 
   def create
     person = Person.new(person_params)
 
-    if person.valid?
+    if valid?(person)
       PeopleRepo.commit(person)
       render :json => PersonSerializer.to_json(person)
     else
@@ -26,6 +25,10 @@ class PeopleController < ApplicationController
 
   def person_keys
     [:first_name, :last_name]
+  end
+
+  def valid?(person)
+    PersonValidator.valid?(person)
   end
 end
 
@@ -49,6 +52,7 @@ class PersonSerializer
       json.first_name person.first_name
       json.last_name  person.last_name
       json.full_name  person.full_name
+      json.errors person.errors.messages
     end
   end
 end

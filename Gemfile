@@ -23,6 +23,9 @@ gem 'jbuilder', '~> 2.0'
 # Data
 # gem 'sqlite3'
 
+# Support
+gem 'lupo'
+
 group :production do
   gem 'rails_12factor'
 end
@@ -45,4 +48,5 @@ group :test do
   gem 'capybara'
   gem 'poltergeist'
   gem 'spec_requirer', github: 'HouseTrip/spec_requirer'
+  gem 'faker'
 end

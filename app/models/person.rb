@@ -6,8 +6,7 @@ class Person
   attr_accessor :first_name, :last_name
   attr_reader   :id
 
-  validates :first_name, :last_name, :presence => true
-  validates :id, presence: true
+  validates :id, :first_name, :last_name, :presence => true
 
   def initialize(attrs = {})
     super(attrs)

@@ -1,14 +1,21 @@
+require 'singleton'
+require 'lupo'
+
 class PeopleRepo
   include Singleton
+  include Lupo.enumerable(:data)
 
   class PersonNotValid < StandardError; end
+
+  def initialize
+    @data = []
+  end
 
   def all
     data
   end
 
   def commit(person)
-    raise PersonNotValid unless person_valid?(person)
     data.push(person)
     self
   end
@@ -21,29 +28,16 @@ class PeopleRepo
     data.size
   end
 
-  def self.all
-    instance.all
+  def find_by_id(id)
+    find { |p| p.id == id }
   end
 
-  def self.commit(person)
-    instance.commit(person)
-  end
-
-  def self.delete_all
-    instance.delete_all
-  end
-
-  def self.count
-    instance.count
+  # expose instance methods at class level
+  def self.method_missing(method_name, *args, &block)
+    self.instance.respond_to?(method_name) ? instance.send(method_name, *args, &block) : super
   end
 
   private
 
-  def data
-    @data ||= []
-  end
-
-  def person_valid?(person)
-    person.valid? && !data.map(&:id).include?(person.id)
-  end
+  attr_reader :data
 end
